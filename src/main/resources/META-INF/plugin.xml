@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>org.example.Mapping-replacement</id>
+    <name>RequestMapping replacement</name>
+    <vendor email="qmn277@gmail.com" url="https://www.github.com/quarix">Quarix</vendor>
+
+    <description><![CDATA[
+      Replaces all @RequestMapping(method = ...) into @GetMapping, @PostMapping e.t.c
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <notificationGroup id="Replacement Notification Group"
+                           displayType="BALLOON"
+                           key="com.github.quarix.mappingreplacement.NotifyReplacement"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+
+        <action id="com.github.quarix.mappingreplacement.ReplaceAction"
+                class="com.github.quarix.mappingreplacement.ReplaceAction" text="Replace @RequestMapping"
+                description="replaces all @RequestMappings to method mappings" fileType="java">
+            <add-to-group group-id="RefactoringMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
