@@ -1,4 +1,4 @@
-package com.github.quarix.mappingreplacement;
+package com.github.quairix.mappingreplacement;
 
 import com.intellij.lang.Language;
 import com.intellij.lang.java.JavaLanguage;
@@ -9,19 +9,26 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
-import static com.github.quarix.mappingreplacement.NotifyReplacement.notifyInfo;
+import static com.github.quairix.mappingreplacement.NotifyReplacement.notifyInfo;
 import static com.intellij.openapi.command.WriteCommandAction.runWriteCommandAction;
 
 
 public class ReplaceAction extends AnAction {
 
     @Override
+    public void update(AnActionEvent e) {
+        PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
+        // show only for java files
+        e.getPresentation().setEnabledAndVisible(psiFile != null && psiFile.getLanguage().isKindOf(JavaLanguage.INSTANCE));
+    }
+
+    @Override
     public void actionPerformed(@NotNull final AnActionEvent e) {
-        //todo: context menu option only for java files
         final Editor editor = e.getData(CommonDataKeys.EDITOR);
         final Language language = e.getData(CommonDataKeys.LANGUAGE);
 
@@ -34,7 +41,6 @@ public class ReplaceAction extends AnAction {
         }
 
         if (editor != null) {
-
             final Document document = editor.getDocument();
             final String text = document.getText();
             final String[] methods = {"Get", "Post", "Put", "Delete", "Patch"};

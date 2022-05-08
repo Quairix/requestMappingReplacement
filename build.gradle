@@ -2,8 +2,8 @@ plugins {
     id 'org.jetbrains.intellij' version '1.5.3'
 }
 
-group 'com.github.quarix.mapping-replacement'
-version '0.1'
+group 'com.github.quairix.mapping-replacement'
+version '1.0'
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
@@ -12,9 +12,14 @@ intellij {
 }
 patchPluginXml {
     changeNotes = """
-      Replaces all @RequestMapping(method = ...) into @GetMapping, @PostMapping e.t.c"""
+      Init version
+      """
 }
 
 repositories {
     mavenCentral()
+}
+
+publishPlugin {
+  token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
 }

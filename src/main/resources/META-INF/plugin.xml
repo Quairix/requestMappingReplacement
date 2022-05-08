@@ -1,30 +1,28 @@
 <idea-plugin>
-    <id>org.example.Mapping-replacement</id>
-    <name>RequestMapping replacement</name>
-    <vendor email="qmn277@gmail.com" url="https://www.github.com/quarix">Quarix</vendor>
+    <id>com.github.quairix.mappingreplacement</id>
+    <name>@RequestMapping replacement</name>
+    <vendor email="qmn277@gmail.com" url="https://github.com/Quairix">Quairix</vendor>
 
+    <version>1.0.0</version>
     <description><![CDATA[
       Replaces all @RequestMapping(method = ...) into @GetMapping, @PostMapping e.t.c
     ]]></description>
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-         on how to target different products -->
+    <change-notes>Initial release of the plugin.</change-notes>
+
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
         <notificationGroup id="Replacement Notification Group"
                            displayType="BALLOON"
-                           key="com.github.quarix.mappingreplacement.NotifyReplacement"/>
+                           key="com.github.quairix.mappingreplacement.NotifyReplacement"/>
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
-
-        <action id="com.github.quarix.mappingreplacement.ReplaceAction"
-                class="com.github.quarix.mappingreplacement.ReplaceAction" text="Replace @RequestMapping"
-                description="replaces all @RequestMappings to method mappings" fileType="java">
+        <action id="com.github.quairix.mappingreplacement.ReplaceAction"
+                class="com.github.quairix.mappingreplacement.ReplaceAction" text="Replace @RequestMapping"
+                description="Replaces all @RequestMappings to @GetMapping, @PostMapping etc.">
             <add-to-group group-id="RefactoringMenu" anchor="first"/>
         </action>
     </actions>

@@ -1,4 +1,4 @@
-package com.github.quarix.mappingreplacement;
+package com.github.quairix.mappingreplacement;
 
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;

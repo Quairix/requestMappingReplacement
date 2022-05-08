@@ -1,2 +1,2 @@
 # RequestMappingReplacement
- Plugin for Intellij IDEA. Replaces in @RestController all @RequestMappings to @GetMapping, @PostMapping etc
+Plugin that replaces all @RequestMappings in @RestController to @GetMapping, @PostMapping etc.
