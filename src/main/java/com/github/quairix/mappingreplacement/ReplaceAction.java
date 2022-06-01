@@ -46,8 +46,10 @@ public class ReplaceAction extends AnAction {
             final String[] methods = {"Get", "Post", "Put", "Delete", "Patch"};
             String newText = text;
             for (String method : methods) {
-                newText = getReplacementString(newText, method);
+                newText = getReplacementForRequests(newText, method);
             }
+            newText = getReplacementForExtraCommas(newText);
+
             final String result = newText;
             runWriteCommandAction(project, () ->
                     document.setText(result)
@@ -59,10 +61,19 @@ public class ReplaceAction extends AnAction {
     }
 
     @NotNull
-    private String getReplacementString(final String text, final String method) {
-        return text.replaceAll("@RequestMapping\\(((.*),)?\\s*method\\s*=\\s*RequestMethod." +
-                        method.toUpperCase(Locale.ROOT) + "\\s*\\)",
-                "@" + method + "Mapping\\($2\\)");
+    private String getReplacementForRequests(final String text, final String method) {
+        // replace RequestMapping
+        return text.replaceAll("@RequestMapping\\((.*)\\s*method\\s*=\\s*RequestMethod." + method.toUpperCase(Locale.ROOT) + "(.*)\\)",
+                "@" + method + "Mapping\\($1$2\\)");
+    }
+
+    @NotNull
+    private String getReplacementForExtraCommas(final String text) {
+        // remove extra commas in code
+        return text.replaceAll("(@.+Mapping\\()(\\s*,\\s*)(.*)\\)", "$1$3)")
+                .replaceAll("(@.+Mapping\\()(.*)(\\s*,\\s*)\\)", "$1$2)")
+                .replaceAll("(@.+Mapping\\()(.*)(\\s*,\\s*,\\s*)(.*)\\)", "$1$2$4")
+                .replaceAll("(@.+Mapping)\\(\\s*\\)", "$1");
     }
 
 
