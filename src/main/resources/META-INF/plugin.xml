@@ -3,13 +3,14 @@
     <name>RequestMapping replacement</name>
     <vendor email="qmn277@gmail.com" url="https://github.com/Quairix">Quairix</vendor>
 
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <description><![CDATA[
       Replaces all @RequestMapping(method = ...) into @GetMapping, @PostMapping e.t.c
     ]]></description>
 
-    <change-notes>Some fixes</change-notes>
+    <change-notes>IDEA 2022.1.3 support</change-notes>
 
+    <idea-version since-build="212.5712.43"/>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
 
